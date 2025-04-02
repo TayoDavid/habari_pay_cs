@@ -13,7 +13,12 @@ class TransactionDetailPage extends StatelessWidget {
     final currency = transaction.currencyId;
     final amount = '${transaction.transactionAmount / 100}';
     final amountStr = '$currency${amount.moneyFormat}';
+
+    final merchantAmount = '${transaction.merchantAmount / 100}';
+    final merchantAmountStr = '$currency${merchantAmount.moneyFormat}';
+
     final successful = transaction.status.toLowerCase() == 'success';
+
     return Scaffold(
       appBar: AppBar(
         title: AppText(
@@ -53,7 +58,7 @@ class TransactionDetailPage extends StatelessWidget {
             RowItem(title: 'Transaction Type.', value: transaction.transactionType.toUpperCase()),
             RowItem(title: 'Merchant Name.', value: transaction.merchantName),
             RowItem(title: 'Merchant Email', value: transaction.merchantEmail),
-            RowItem(title: 'Merchant Amount', value: '$currency${'${transaction.merchantAmount}'.moneyFormat}'),
+            RowItem(title: 'Merchant Amount', value: merchantAmountStr),
             RowItem(title: 'Transaction Fee', value: '$currency${'${transaction.fee}'.moneyFormat}'),
           ],
         ),
